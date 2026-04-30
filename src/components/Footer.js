@@ -27,8 +27,8 @@ const Footer = () => (
       <div>
         <h4>Contact</h4>
         <ul>
-          <li>📞 (706) 555-0199</li>
-          <li>✉️ info@southerngassolutions.com</li>
+          <li>📞 (404) 862-3911</li>
+          <li>✉️ devon@southerngassolutions.com</li>
           <li>📍 Northwest Georgia</li>
         </ul>
       </div>
