@@ -1,6 +1,5 @@
 import Header from "../components/headerHome";
 import Footer from "../components/Footer";
-import images from "../utils/images";
 import '../css/home.css';
 
 const services = [
