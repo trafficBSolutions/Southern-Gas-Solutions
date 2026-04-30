@@ -3,12 +3,11 @@ import Footer from "../components/Footer";
 import '../css/home.css';
 
 const services = [
-  { icon: "🔧", title: "Gas Line Installation", desc: "New gas line runs for appliances, grills, fire pits, and pool heaters." },
-  { icon: "🛠️", title: "Gas Line Repairs", desc: "Fast leak detection and repair to keep your home safe." },
-  { icon: "🏠", title: "Propane Systems", desc: "Complete propane system installation and conversion services." },
-  { icon: "🔥", title: "Gas Logs & Fireplaces", desc: "Gas log and fireplace installation for cozy, efficient heating." },
-  { icon: "💧", title: "Tankless Water Heaters", desc: "Energy-efficient tankless water heater installation and service." },
-  { icon: "🏢", title: "Commercial Gas Piping", desc: "Commercial gas piping for restaurants, warehouses, and businesses." },
+  { icon: "🔧", title: "Installation Services", desc: "Expert gas line installation for residential and commerical properties" },
+  { icon: "🛠️", title: "Residential & Commercial Repairs", desc: "Fast, reliable repairs to restore safety and performance" },
+  { icon: "💧", title: "Maintenance Services", desc: "Preventative maintenance to keep your gas systmes running safely and efficiently." },
+  { icon: "🏢", title: "Emergency Services", desc: "24/7 emergency response for gas leaks and urgent repair. We're when you need us most." },
+  { icon: "🛢️", title: "Safe. Reliable Professional", desc: "Commited to safety quality workmanship, and exceptional service on every job.." }
 ];
 
 const areas = [
@@ -53,7 +52,7 @@ const Home = () => (
   <p>Safe. Reliable. Professional.</p>
 
   <div className="home-services-grid">
-    {services.slice(0, 4).map((s) => (
+    {services.map((s) => (
       <div className="home-service-card" key={s.title}>
         <div className="home-service-icon">{s.icon}</div>
         <h3>{s.title}</h3>
