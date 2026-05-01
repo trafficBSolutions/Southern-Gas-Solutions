@@ -1,6 +1,6 @@
 import {
   Home, Services, About, OurWork, ServiceAreas, Contact, Quote, Careers,
-  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote,
+  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail,
 } from './pages/index';
 import { Routes, Route } from 'react-router-dom';
 import './css/global.css';
@@ -14,6 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/services" element={<Services />} />
+      <Route path="/services/:slug" element={<ServiceDetail />} />
       <Route path="/about" element={<About />} />
       <Route path="/our-work" element={<OurWork />} />
       <Route path="/service-areas" element={<ServiceAreas />} />
