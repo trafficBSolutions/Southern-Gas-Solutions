@@ -17,6 +17,7 @@ const AdminDashboard = () => {
   const [calMonth, setCalMonth] = useState(new Date().getMonth());
   const [calYear, setCalYear] = useState(new Date().getFullYear());
   const [expandedQuote, setExpandedQuote] = useState(null);
+  const [expandedApp, setExpandedApp] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('sgs_token');
@@ -196,16 +197,33 @@ const AdminDashboard = () => {
           </div>
 
           {/* Job Applications */}
-          <div className="dash-card">
+          <div className="dash-card dash-card-full">
             <h3>👷 Job Applications</h3>
             <ul className="dash-list">
               {applications.length === 0 && <li><div className="dash-list-info"><span>No applications yet</span></div></li>}
-              {applications.slice(0, 8).map(a => (
-                <li key={a._id}>
-                  <div className="dash-list-info">
-                    <strong>{a.name}</strong>
-                    <span>{a.position} · {a.experience || 'N/A'}</span>
+              {applications.slice(0, 10).map(a => (
+                <li key={a._id} style={{ flexDirection: 'column', alignItems: 'stretch', cursor: 'pointer' }} onClick={() => setExpandedApp(expandedApp === a._id ? null : a._id)}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="dash-list-info">
+                      <strong>{a.name}</strong>
+                      <span>{a.position} · {a.experience || 'N/A'} · {new Date(a.createdAt).toLocaleDateString()}</span>
+                    </div>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>{expandedApp === a._id ? '▲' : '▼'}</span>
                   </div>
+                  {expandedApp === a._id && (
+                    <div className="quote-detail-expand">
+                      <div className="quote-detail-grid">
+                        <div><strong>Name:</strong> {a.name}</div>
+                        <div><strong>Email:</strong> <a href={`mailto:${a.email}`} style={{ color: 'var(--orange)' }}>{a.email}</a></div>
+                        <div><strong>Phone:</strong> {a.phone ? <a href={`tel:${a.phone}`} style={{ color: 'var(--orange)' }}>{a.phone}</a> : 'N/A'}</div>
+                        <div><strong>Position:</strong> {a.position}</div>
+                        <div><strong>Experience:</strong> {a.experience || 'N/A'}</div>
+                        <div><strong>Resume:</strong> {a.resume ? `📎 ${a.resume}` : 'Not provided'}</div>
+                        <div><strong>Cover Letter:</strong> {a.coverLetter ? `📎 ${a.coverLetter}` : 'Not provided'}</div>
+                      </div>
+                      {a.message && <div style={{ marginTop: 8 }}><strong>Additional Info:</strong><p style={{ margin: '4px 0 0', color: 'var(--gray-dark)', fontSize: '0.88rem', lineHeight: 1.5 }}>{a.message}</p></div>}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
