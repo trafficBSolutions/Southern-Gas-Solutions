@@ -53,13 +53,10 @@ function Header() {
                         <a className="main-nav-view" href="/">Home</a>
                         <a className="main-nav" href="/services">Services</a>
                         <ul className="dropdown-menu">
-                            <li><a href="/services/gas-line-installation">Gas Line Installation</a></li>
-                            <li><a href="/services/gas-line-repairs">Gas Line Repairs</a></li>
-                            <li><a href="/services/propane-systems">Propane Systems</a></li>
-                            <li><a href="/services/tankless-water-heaters">Tankless Water Heaters</a></li>
-                            <li><a href="/services/commercial-gas-piping">Commercial Gas Piping</a></li>
-                            <li><a href="/services/emergency-gas-service">Emergency Gas Service</a></li>
-                            <li><a href="/services/gas-logs-fireplaces">Gas Logs & Fireplaces</a></li>
+                            <li><a href="/services/installation-services">Installation Services</a></li>
+                            <li><a href="/services/residential-commercial-repairs">Residential & Commercial Repairs</a></li>
+                            <li><a href="/services/maintenance-services">Maintenance Services</a></li>
+                            <li><a href="/services/emergency-services">Emergency Services</a></li>
                         </ul>
                     </li>
                     <li><a className="main-nav" href="/about">About</a></li>
