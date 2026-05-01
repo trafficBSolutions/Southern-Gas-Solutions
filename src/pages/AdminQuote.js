@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Header from '../components/headerHome';
 import Footer from '../components/Footer';
 import api from '../utils/api';
@@ -9,20 +9,20 @@ const money = (n) => `$${(Number(n) || 0).toFixed(2)}`;
 const blankRow = () => ({ id: crypto.randomUUID(), item: '', description: '', taxable: true, qty: 1, unitPrice: 0 });
 
 const services = [
-  'Gas Line Installation', 'Gas Line Repairs', 'Propane Systems',
-  'Tankless Water Heaters', 'Commercial Gas Piping', 'Emergency Gas Service', 'Gas Logs & Fireplaces',
+  'Installation Services', 'Residential & Commercial Repairs', 'Maintenance Services', 'Emergency Services',
 ];
 
 const AdminQuote = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const token = localStorage.getItem('sgs_token');
 
   useEffect(() => { if (!token) navigate('/admin-login'); }, [token, navigate]);
 
-  const [customer, setCustomer] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [service, setService] = useState('');
+  const [customer, setCustomer] = useState(searchParams.get('name') || '');
+  const [email, setEmail] = useState(searchParams.get('email') || '');
+  const [phone, setPhone] = useState(searchParams.get('phone') || '');
+  const [service, setService] = useState(searchParams.get('service') || '');
   const [taxRate, setTaxRate] = useState(0.08);
   const [isTaxExempt, setIsTaxExempt] = useState(false);
   const [rows, setRows] = useState([blankRow()]);
