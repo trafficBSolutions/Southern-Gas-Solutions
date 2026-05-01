@@ -95,13 +95,10 @@ const Contact = () => {
               <label>Service Needed</label>
               <select name="service" value={form.service} onChange={handleChange}>
                 <option value="">Select a service</option>
-                <option>Gas Line Installation</option>
-                <option>Gas Line Repairs</option>
-                <option>Propane Systems</option>
-                <option>Tankless Water Heaters</option>
-                <option>Commercial Gas Piping</option>
-                <option>Emergency Gas Service</option>
-                <option>Gas Logs &amp; Fireplaces</option>
+                <option>Installation Services</option>
+                <option>Residential &amp; Commercial Repairs</option>
+                <option>Maintenance Services</option>
+                <option>Emergency Services</option>
                 <option>Other</option>
               </select>
             </div>
