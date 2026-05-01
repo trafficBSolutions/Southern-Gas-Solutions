@@ -3,13 +3,11 @@ import Footer from "../components/Footer";
 import '../css/services.css';
 
 const services = [
-  { icon: "🔧", title: "Gas Line Installation", desc: "New gas line installation for stoves, dryers, grills, fire pits, pool heaters, generators, and more.", link: "/services/gas-line-installation" },
-  { icon: "🛠️", title: "Gas Line Repairs", desc: "Expert leak detection and gas line repair services to keep your property safe.", link: "/services/gas-line-repairs" },
-  { icon: "🏠", title: "Propane Systems", desc: "Propane system installation, conversion, and maintenance for residential and commercial use.", link: "/services/propane-systems" },
-  { icon: "💧", title: "Tankless Water Heaters", desc: "Energy-efficient tankless water heater installation, replacement, and servicing.", link: "/services/tankless-water-heaters" },
-  { icon: "🏢", title: "Commercial Gas Piping", desc: "Commercial-grade gas piping for restaurants, warehouses, and industrial facilities.", link: "/services/commercial-gas-piping" },
-  { icon: "🚨", title: "Emergency Gas Service", desc: "24/7 emergency gas line service for urgent leaks and safety concerns.", link: "/services/emergency-gas-service" },
-  { icon: "🔥", title: "Gas Logs & Fireplaces", desc: "Gas log sets and fireplace installation for efficient, beautiful heating.", link: "/services/gas-logs-fireplaces" },
+  { icon: "🔧", title: "Installation Services", desc: "Expert gas line installation for residential and commercial properties.", link: "/services/installation-services" },
+  { icon: "🛠️", title: "Residential & Commercial Repairs", desc: "Fast, reliable repairs to restore safety and performance.", link: "/services/residential-commercial-repairs" },
+  { icon: "💧", title: "Maintenance Services", desc: "Preventative maintenance to keep your gas systems running safely and efficiently.", link: "/services/maintenance-services" },
+  { icon: "🏢", title: "Emergency Services", desc: "24/7 emergency response for gas leaks and urgent repairs. We're there when you need us most.", link: "/services/emergency-services" },
+  { icon: "🛢️", title: "Safe. Reliable. Professional.", desc: "Committed to safety, quality workmanship, and exceptional service on every job.", link: "/services" },
 ];
 
 const Services = () => (
@@ -70,7 +68,7 @@ const Services = () => (
     <section className="cta-banner">
       <h2>Need a Gas Service?</h2>
       <p>Get a free quote today — no obligation, no hassle.</p>
-      <a href="/contact" className="btn btn-outline">Get a Free Quote</a>
+      <a href="/quote" className="btn btn-outline">Get a Free Quote</a>
     </section>
 
     <Footer />
