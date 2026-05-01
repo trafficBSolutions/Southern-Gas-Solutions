@@ -10,6 +10,7 @@ const money = (n) => `$${(Number(n) || 0).toFixed(2)}`;
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState([]);
+  const [customerQuotes, setCustomerQuotes] = useState([]);
   const [contacts, setContacts] = useState([]);
   const [applications, setApplications] = useState([]);
   const [jobs, setJobs] = useState([]);
@@ -29,6 +30,7 @@ const AdminDashboard = () => {
     }
     const headers = { Authorization: `Bearer ${token}` };
     api.get('/admin-quotes', { headers }).then(r => setQuotes(r.data)).catch(() => {});
+    api.get('/quote', { headers }).then(r => setCustomerQuotes(r.data)).catch(() => {});
     api.get('/contact', { headers }).then(r => setContacts(r.data)).catch(() => {});
     api.get('/careers', { headers }).then(r => setApplications(r.data)).catch(() => {});
     api.get('/jobs', { headers }).then(r => setJobs(r.data)).catch(() => {});
@@ -119,9 +121,25 @@ const AdminDashboard = () => {
         </div>
 
         <div className="dash-grid">
-          {/* Recent Quotes */}
+          {/* Customer Quote Requests */}
           <div className="dash-card">
-            <h3>🔧 Recent Quotes</h3>
+            <h3>📩 Customer Quote Requests</h3>
+            <ul className="dash-list">
+              {customerQuotes.length === 0 && <li><div className="dash-list-info"><span>No quote requests yet</span></div></li>}
+              {customerQuotes.slice(0, 8).map(q => (
+                <li key={q._id}>
+                  <div className="dash-list-info">
+                    <strong>{q.name}</strong>
+                    <span>{q.service} · {q.email}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Admin Quotes Sent */}
+          <div className="dash-card">
+            <h3>🔧 Quotes Sent</h3>
             <ul className="dash-list">
               {quotes.length === 0 && <li><div className="dash-list-info"><span>No quotes yet</span></div></li>}
               {quotes.slice(0, 8).map(q => (
