@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/headerHome';
 import Footer from '../components/Footer';
 import api from '../utils/api';
 import '../css/careers.css';
+
+const SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const divisions = [
   {
@@ -34,15 +37,19 @@ const Careers = () => {
   const [resume, setResume] = useState(null);
   const [coverLetter, setCoverLetter] = useState(null);
   const [status, setStatus] = useState(null);
+  const captchaRef = useRef(null);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const captchaToken = captchaRef.current?.getValue();
+    if (!captchaToken) { setStatus('Please complete the reCAPTCHA.'); return; }
     setStatus('sending');
 
     const data = new FormData();
     Object.entries(form).forEach(([k, v]) => data.append(k, v));
+    data.append('captchaToken', captchaToken);
     if (resume) data.append('resume', resume);
     if (coverLetter) data.append('coverLetter', coverLetter);
 
@@ -52,6 +59,7 @@ const Careers = () => {
       setForm({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
       setResume(null);
       setCoverLetter(null);
+      captchaRef.current?.reset();
     } catch (err) {
       setStatus(err.response?.data?.error || 'Failed to connect to server.');
     }
@@ -145,6 +153,9 @@ const Careers = () => {
             <div className="form-group">
               <label>Additional Info</label>
               <textarea name="message" rows="4" value={form.message} onChange={handleChange} placeholder="Tell us about yourself…" />
+            </div>
+            <div className="form-group">
+              <ReCAPTCHA sitekey={SITE_KEY} ref={captchaRef} />
             </div>
             <button className="form-submit" type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? 'Submitting…' : 'Submit Application'}
