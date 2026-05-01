@@ -106,3 +106,126 @@ const serviceData = {
     features: [
       '24/7 emergency dispatch',
       'Rapid gas leak response',
+      'Emergency shutoff & isolation',
+      'Safety assessments & clearance',
+      'Temporary & permanent repair solutions',
+      'Coordination with local fire & utility departments',
+    ],
+    whyUs: [
+      { icon: '⏰', title: 'Available 24/7', desc: 'Day, night, weekends, holidays — we\'re always on call.' },
+      { icon: '🚗', title: 'Fast Response Time', desc: 'We dispatch immediately and arrive as quickly as possible.' },
+      { icon: '🛡️', title: 'Safety Certified', desc: 'Our emergency techs are trained for high-pressure safety situations.' },
+      { icon: '📞', title: 'One Call Does It All', desc: 'We handle everything from shutoff to final repair.' },
+    ],
+    process: [
+      { step: 1, title: 'Call (404) 862-3911', desc: 'Describe the emergency — we dispatch immediately.' },
+      { step: 2, title: 'Secure the Area', desc: 'Our team arrives, isolates the leak, and ensures safety.' },
+      { step: 3, title: 'Emergency Repair', desc: 'We fix the issue on-site or install a temporary solution.' },
+      { step: 4, title: 'Follow-Up', desc: 'We schedule any needed permanent repairs and provide documentation.' },
+    ],
+    faqs: [
+      { q: 'What should I do if I smell gas?', a: 'Leave the area immediately. Do not use light switches, phones, or anything that could create a spark. Once you\'re safely outside, call us at (404) 862-3911.' },
+      { q: 'How fast can you respond?', a: 'We dispatch immediately upon receiving your call. Response times vary by location but we prioritize all emergency calls.' },
+      { q: 'Is there an extra charge for after-hours service?', a: 'Emergency rates may apply for after-hours calls. We\'ll always communicate pricing before starting any work.' },
+    ],
+  },
+};
+
+const ServiceDetail = () => {
+  const { slug } = useParams();
+  const service = serviceData[slug];
+  const [openFaq, setOpenFaq] = useState(null);
+
+  if (!service) return <Navigate to="/services" replace />;
+
+  return (
+    <div>
+      <Header />
+
+      <section className="page-hero">
+        <h1>{service.icon} {service.title}</h1>
+        <p>{service.hero}</p>
+      </section>
+
+      {/* About */}
+      <section className="section">
+        <div className="service-detail-content">
+          <div className="accent-line" />
+          <h2 className="section-title">About This Service</h2>
+          <p className="service-detail-desc">{service.description}</p>
+          <div className="service-features-grid">
+            {service.features.map((f, i) => (
+              <div className="service-feature" key={i}>
+                <span className="service-feature-check">✓</span>
+                <span>{f}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="section section-gray">
+        <div className="accent-line" />
+        <h2 className="section-title">Why Choose Us</h2>
+        <p className="section-subtitle">The Southern Gas Solutions difference.</p>
+        <div className="sd-why-grid">
+          {service.whyUs.map((w, i) => (
+            <div className="sd-why-card" key={i}>
+              <div className="sd-why-icon">{w.icon}</div>
+              <h3>{w.title}</h3>
+              <p>{w.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="section">
+        <div className="accent-line" />
+        <h2 className="section-title">Our Process</h2>
+        <p className="section-subtitle">Simple, transparent, and professional from start to finish.</p>
+        <div className="sd-process-grid">
+          {service.process.map((p) => (
+            <div className="sd-process-step" key={p.step}>
+              <div className="sd-process-num">{p.step}</div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section section-gray">
+        <div className="accent-line" />
+        <h2 className="section-title">Frequently Asked Questions</h2>
+        <div className="sd-faq-list">
+          {service.faqs.map((f, i) => (
+            <div className={`sd-faq-item ${openFaq === i ? 'open' : ''}`} key={i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+              <div className="sd-faq-q">
+                <span>{f.q}</span>
+                <span className="sd-faq-toggle">{openFaq === i ? '−' : '+'}</span>
+              </div>
+              {openFaq === i && <div className="sd-faq-a">{f.a}</div>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-banner">
+        <h2>Ready to Get Started?</h2>
+        <p>Get a free quote for {service.title.toLowerCase()} — no obligation, no hassle.</p>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href={`/quote?service=${encodeURIComponent(service.title)}`} className="btn btn-outline">Get a Free Quote</a>
+          <a href="tel:4048623911" className="btn btn-outline">📞 Call (404) 862-3911</a>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default ServiceDetail;
