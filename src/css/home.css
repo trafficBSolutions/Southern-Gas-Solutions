@@ -212,7 +212,6 @@
   .section { padding: 48px 0; }
 }
 .home-hero {
-  margin-top: 80px;
   min-height: 620px;
   background:
     linear-gradient(90deg, rgba(5, 24, 48, 0.98) 0%, rgba(5, 24, 48, 0.9) 42%, rgba(5, 24, 48, 0.35) 100%),
