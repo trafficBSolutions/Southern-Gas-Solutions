@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import '../css/admin.css';
+
+const SESSION_DURATION = 14 * 24 * 60 * 60 * 1000; // 2 weeks
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('sgs_token');
+    const loginTime = localStorage.getItem('sgs_login_time');
+    if (token && loginTime && (Date.now() - Number(loginTime)) < SESSION_DURATION) {
+      navigate('/admin-dashboard');
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +26,7 @@ const AdminLogin = () => {
       const { data } = await api.post('/auth/login', { email, password });
       localStorage.setItem('sgs_token', data.token);
       localStorage.setItem('sgs_admin', JSON.stringify(data.admin));
+      localStorage.setItem('sgs_login_time', String(Date.now()));
       navigate('/admin-dashboard');
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
