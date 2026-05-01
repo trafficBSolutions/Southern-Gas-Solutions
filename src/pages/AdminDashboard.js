@@ -16,20 +16,28 @@ const AdminDashboard = () => {
   const [calMonth, setCalMonth] = useState(new Date().getMonth());
   const [calYear, setCalYear] = useState(new Date().getFullYear());
 
-  const token = localStorage.getItem('sgs_token');
-
   useEffect(() => {
-    if (!token) { navigate('/admin-login'); return; }
+    const token = localStorage.getItem('sgs_token');
+    const loginTime = localStorage.getItem('sgs_login_time');
+    const SESSION_DURATION = 14 * 24 * 60 * 60 * 1000; // 2 weeks
+    if (!token || !loginTime || (Date.now() - Number(loginTime)) > SESSION_DURATION) {
+      localStorage.removeItem('sgs_token');
+      localStorage.removeItem('sgs_admin');
+      localStorage.removeItem('sgs_login_time');
+      navigate('/admin-login');
+      return;
+    }
     const headers = { Authorization: `Bearer ${token}` };
     api.get('/admin-quotes', { headers }).then(r => setQuotes(r.data)).catch(() => {});
     api.get('/contact', { headers }).then(r => setContacts(r.data)).catch(() => {});
     api.get('/careers', { headers }).then(r => setApplications(r.data)).catch(() => {});
     api.get('/jobs', { headers }).then(r => setJobs(r.data)).catch(() => {});
-  }, [token, navigate]);
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('sgs_token');
     localStorage.removeItem('sgs_admin');
+    localStorage.removeItem('sgs_login_time');
     navigate('/admin-login');
   };
 
