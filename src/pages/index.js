@@ -10,8 +10,9 @@ import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 import AdminQuote from './AdminQuote';
 import ApproveQuote from './ApproveQuote';
+import ServiceDetail from './ServiceDetail';
 
 export {
   Home, Services, About, OurWork, ServiceAreas, Contact, Quote, Careers,
-  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote,
+  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail,
 };
