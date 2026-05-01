@@ -18,11 +18,14 @@ const Footer = () => (
       <div>
         <h4>Service Areas</h4>
         <ul>
-          <li><a href="/service-areas">Calhoun, GA</a></li>
           <li><a href="/service-areas">Dalton, GA</a></li>
+          <li><a href="/service-areas">Chatsworth, GA</a></li>
           <li><a href="/service-areas">Rome, GA</a></li>
+          <li><a href="/service-areas">Calhoun, GA</a></li>
           <li><a href="/service-areas">Cartersville, GA</a></li>
+          <li><a href="/service-areas">Kennesaw, GA</a></li>
           <li><a href="/service-areas">Marietta, GA</a></li>
+          <li><a href="/service-areas">Metro Atlanta</a></li>
         </ul>
       </div>
       <div>
