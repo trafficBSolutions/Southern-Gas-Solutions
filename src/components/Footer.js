@@ -1,3 +1,4 @@
+import '../css/footer.css';
 const Footer = () => (
   <footer className="footer">
     <div className="footer-grid">
@@ -34,7 +35,7 @@ const Footer = () => (
       </div>
     </div>
 <div className="footer-copyright">
-      <p className="footer-copy-p">&copy; 2026 Statement Marine LLC - 
+      <p className="footer-copy-p">&copy; 2026 Southern Gas Solutions LLC - 
          Website Created by <a className="footer-face" href="https://www.material-worx.com/portfolio" target="_blank" rel="noopener noreferrer">MX Systems</a> - All Rights Reserved.</p>
     </div>
   </footer>
