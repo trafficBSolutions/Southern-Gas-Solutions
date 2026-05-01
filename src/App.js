@@ -1,6 +1,13 @@
-import { Home, Services, About, OurWork, ServiceAreas, Contact } from './pages/index';
+import {
+  Home, Services, About, OurWork, ServiceAreas, Contact, Quote, Careers,
+  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote,
+} from './pages/index';
 import { Routes, Route } from 'react-router-dom';
 import './css/global.css';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://southern-gas-server.onrender.com';
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -11,6 +18,12 @@ function App() {
       <Route path="/our-work" element={<OurWork />} />
       <Route path="/service-areas" element={<ServiceAreas />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/quote" element={<Quote />} />
+      <Route path="/careers" element={<Careers />} />
+      <Route path="/admin-login" element={<AdminLogin />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      <Route path="/admin-quote" element={<AdminQuote />} />
+      <Route path="/approve-quote/:token" element={<ApproveQuote />} />
     </Routes>
   );
 }
