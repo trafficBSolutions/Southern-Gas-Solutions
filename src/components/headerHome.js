@@ -74,7 +74,7 @@ function Header() {
                     <BsTelephoneForwardFill className="nav-icon"/>
                     <div className="nav-number-icon">
                     <p>Call Now 24/7</p>
-                    <a href="tel:4048623911">(404)862-3911</a>
+                    <a href="tel:4048623911">(404) 862-3911</a>
                     </div>
                 </div>
             </nav>
