@@ -16,6 +16,7 @@ const AdminDashboard = () => {
   const [jobs, setJobs] = useState([]);
   const [calMonth, setCalMonth] = useState(new Date().getMonth());
   const [calYear, setCalYear] = useState(new Date().getFullYear());
+  const [expandedQuote, setExpandedQuote] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('sgs_token');
@@ -122,16 +123,40 @@ const AdminDashboard = () => {
 
         <div className="dash-grid">
           {/* Customer Quote Requests */}
-          <div className="dash-card">
+          <div className="dash-card dash-card-full">
             <h3>📩 Customer Quote Requests</h3>
             <ul className="dash-list">
               {customerQuotes.length === 0 && <li><div className="dash-list-info"><span>No quote requests yet</span></div></li>}
-              {customerQuotes.slice(0, 8).map(q => (
-                <li key={q._id}>
-                  <div className="dash-list-info">
-                    <strong>{q.name}</strong>
-                    <span>{q.service} · {q.email}</span>
+              {customerQuotes.slice(0, 10).map(q => (
+                <li key={q._id} style={{ flexDirection: 'column', alignItems: 'stretch', cursor: 'pointer' }} onClick={() => setExpandedQuote(expandedQuote === q._id ? null : q._id)}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div className="dash-list-info">
+                      <strong>{q.name}</strong>
+                      <span>{q.service} · {q.email} · {new Date(q.createdAt).toLocaleDateString()}</span>
+                    </div>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>{expandedQuote === q._id ? '▲' : '▼'}</span>
                   </div>
+                  {expandedQuote === q._id && (
+                    <div className="quote-detail-expand">
+                      <div className="quote-detail-grid">
+                        <div><strong>Name:</strong> {q.name}</div>
+                        <div><strong>Email:</strong> <a href={`mailto:${q.email}`} style={{ color: 'var(--orange)' }}>{q.email}</a></div>
+                        <div><strong>Phone:</strong> {q.phone ? <a href={`tel:${q.phone}`} style={{ color: 'var(--orange)' }}>{q.phone}</a> : 'N/A'}</div>
+                        <div><strong>Service:</strong> {q.service}</div>
+                      </div>
+                      {q.details && <div style={{ marginTop: 8 }}><strong>Details:</strong><p style={{ margin: '4px 0 0', color: 'var(--gray-dark)', fontSize: '0.88rem', lineHeight: 1.5 }}>{q.details}</p></div>}
+                      <button
+                        className="btn btn-primary"
+                        style={{ marginTop: 12, padding: '10px 20px', fontSize: '0.85rem' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/admin-quote?name=${encodeURIComponent(q.name)}&email=${encodeURIComponent(q.email)}&phone=${encodeURIComponent(q.phone || '')}&service=${encodeURIComponent(q.service || '')}`);
+                        }}
+                      >
+                        Create Quote for {q.name}
+                      </button>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
