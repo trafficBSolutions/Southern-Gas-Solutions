@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Header from '../components/headerHome';
 import Footer from '../components/Footer';
 import api from '../utils/api';
+import { formatPhone } from '../utils/formatPhone';
 import '../css/admin.css';
 
 const money = (n) => `$${(Number(n) || 0).toFixed(2)}`;
@@ -42,10 +43,7 @@ const AdminQuote = () => {
     return { lineTotals, subtotal, taxDue, total };
   }, [rows, taxRate, isTaxExempt]);
 
-  const handlePhoneChange = (e) => {
-    const raw = e.target.value.replace(/\D/g, '');
-    setPhone(raw.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3'));
-  };
+  const handlePhoneChange = (e) => setPhone(formatPhone(e.target.value));
 
   const handleSend = async () => {
     if (!email || !customer) { setMessage('Customer name and email are required.'); return; }
@@ -86,7 +84,7 @@ const AdminQuote = () => {
           <div className="aq-row">
             <div className="form-group">
               <label>Phone</label>
-              <input type="tel" value={phone} onChange={handlePhoneChange} />
+              <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="(XXX) XXX-XXXX" maxLength={14} />
             </div>
             <div className="form-group">
               <label>Service</label>
