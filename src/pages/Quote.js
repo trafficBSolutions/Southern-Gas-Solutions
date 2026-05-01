@@ -8,8 +8,10 @@ import '../css/quote.css';
 const SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const services = [
-  'Gas Line Installation', 'Gas Line Repairs', 'Propane Systems',
-  'Tankless Water Heaters', 'Commercial Gas Piping', 'Emergency Gas Service', 'Gas Logs & Fireplaces',
+  'Installation Services',
+  'Residential & Commercial Repairs',
+  'Maintenance Services',
+  'Emergency Services',
 ];
 
 const Quote = () => {
