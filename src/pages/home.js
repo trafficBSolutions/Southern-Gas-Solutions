@@ -1,6 +1,7 @@
 import Header from "../components/headerHome";
 import Footer from "../components/Footer";
 import '../css/home.css';
+import '../css/careers.css';
 
 const services = [
   { icon: "🔧", title: "Installation Services", desc: "Expert gas line installation for residential and commerical properties" },
@@ -32,7 +33,7 @@ const Home = () => (
       </p>
 
       <div className="home-hero-buttons">
-        <a href="/contact" className="hero-btn-orange">Get a Free Quote</a>
+        <a href="/Quote" className="hero-btn-orange">Get a Free Quote</a>
         <a href="tel:4048623911" className="hero-btn-outline">Call 24/7 Emergency</a>
       </div>
 
@@ -102,6 +103,14 @@ const Home = () => (
         ))}
       </div>
       <a href="/service-areas" className="btn btn-primary">View All Service Areas</a>
+    </section>
+
+    {/* Now Hiring */}
+    <section className="hiring-section">
+      <div className="accent-line" />
+      <h2>🔥 We're Hiring!</h2>
+      <p>Join our growing team of gas professionals. We offer competitive pay, benefits, and a great work environment across Northwest Georgia.</p>
+      <a href="/careers" className="btn btn-primary">View Open Positions</a>
     </section>
 
     {/* CTA */}
