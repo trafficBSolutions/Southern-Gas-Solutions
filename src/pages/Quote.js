@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/headerHome';
 import Footer from '../components/Footer';
@@ -15,7 +16,8 @@ const services = [
 ];
 
 const Quote = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', details: '' });
+  const [searchParams] = useSearchParams();
+  const [form, setForm] = useState({ name: '', email: '', phone: '', service: searchParams.get('service') || '', details: '' });
   const [status, setStatus] = useState(null);
   const captchaRef = useRef(null);
 
