@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/headerHome';
 import Footer from '../components/Footer';
 import api from '../utils/api';
+import { formatPhone } from '../utils/formatPhone';
 import '../css/admin.css';
 
 const money = (n) => `$${(Number(n) || 0).toFixed(2)}`;
@@ -142,7 +143,7 @@ const AdminDashboard = () => {
                       <div className="quote-detail-grid">
                         <div><strong>Name:</strong> {q.name}</div>
                         <div><strong>Email:</strong> <a href={`mailto:${q.email}`} style={{ color: 'var(--orange)' }}>{q.email}</a></div>
-                        <div><strong>Phone:</strong> {q.phone ? <a href={`tel:${q.phone}`} style={{ color: 'var(--orange)' }}>{q.phone}</a> : 'N/A'}</div>
+                        <div><strong>Phone:</strong> {q.phone ? <a href={`tel:${q.phone}`} style={{ color: 'var(--orange)' }}>{formatPhone(q.phone)}</a> : 'N/A'}</div>
                         <div><strong>Service:</strong> {q.service}</div>
                       </div>
                       {q.details && <div style={{ marginTop: 8 }}><strong>Details:</strong><p style={{ margin: '4px 0 0', color: 'var(--gray-dark)', fontSize: '0.88rem', lineHeight: 1.5 }}>{q.details}</p></div>}
@@ -151,7 +152,7 @@ const AdminDashboard = () => {
                         style={{ marginTop: 12, padding: '10px 20px', fontSize: '0.85rem' }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/admin-quote?name=${encodeURIComponent(q.name)}&email=${encodeURIComponent(q.email)}&phone=${encodeURIComponent(q.phone || '')}&service=${encodeURIComponent(q.service || '')}`);
+                          navigate(`/admin-quote?name=${encodeURIComponent(q.name)}&email=${encodeURIComponent(q.email)}&phone=${encodeURIComponent(formatPhone(q.phone || ''))}&service=${encodeURIComponent(q.service || '')}`);
                         }}
                       >
                         Create Quote for {q.name}
@@ -215,7 +216,7 @@ const AdminDashboard = () => {
                       <div className="quote-detail-grid">
                         <div><strong>Name:</strong> {a.name}</div>
                         <div><strong>Email:</strong> <a href={`mailto:${a.email}`} style={{ color: 'var(--orange)' }}>{a.email}</a></div>
-                        <div><strong>Phone:</strong> {a.phone ? <a href={`tel:${a.phone}`} style={{ color: 'var(--orange)' }}>{a.phone}</a> : 'N/A'}</div>
+                        <div><strong>Phone:</strong> {a.phone ? <a href={`tel:${a.phone}`} style={{ color: 'var(--orange)' }}>{formatPhone(a.phone)}</a> : 'N/A'}</div>
                         <div><strong>Position:</strong> {a.position}</div>
                         <div><strong>Experience:</strong> {a.experience || 'N/A'}</div>
                         <div><strong>Resume:</strong> {a.resume ? `📎 ${a.resume}` : 'Not provided'}</div>
