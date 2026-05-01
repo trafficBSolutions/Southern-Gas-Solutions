@@ -11,8 +11,9 @@ import AdminDashboard from './AdminDashboard';
 import AdminQuote from './AdminQuote';
 import ApproveQuote from './ApproveQuote';
 import ServiceDetail from './ServiceDetail';
+import NotFound from './NotFound';
 
 export {
   Home, Services, About, OurWork, ServiceAreas, Contact, Quote, Careers,
-  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail,
+  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail, NotFound,
 };
