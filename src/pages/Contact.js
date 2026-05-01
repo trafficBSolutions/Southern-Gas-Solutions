@@ -3,6 +3,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Header from "../components/headerHome";
 import Footer from "../components/Footer";
 import api from '../utils/api';
+import { formatPhone } from '../utils/formatPhone';
 import '../css/contact.css';
 
 const SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
@@ -12,7 +13,10 @@ const Contact = () => {
   const [status, setStatus] = useState(null);
   const captchaRef = useRef(null);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    if (e.target.name === 'phone') return setForm({ ...form, phone: formatPhone(e.target.value) });
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,7 +89,7 @@ const Contact = () => {
             </div>
             <div className="form-group">
               <label>Phone</label>
-              <input name="phone" type="tel" placeholder="(xxx) xxx-xxxx" value={form.phone} onChange={handleChange} />
+              <input name="phone" type="tel" placeholder="(XXX) XXX-XXXX" value={form.phone} onChange={handleChange} maxLength={14} />
             </div>
             <div className="form-group">
               <label>Email</label>
