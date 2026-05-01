@@ -48,7 +48,7 @@ const Contact = () => {
               <div className="contact-detail-icon">📞</div>
               <div>
                 <h4>Phone</h4>
-                <p>(706) 555-0199</p>
+                <p>(404) 862-3911</p>
               </div>
             </div>
 
@@ -56,7 +56,7 @@ const Contact = () => {
               <div className="contact-detail-icon">✉️</div>
               <div>
                 <h4>Email</h4>
-                <p>info@southerngassolutions.com</p>
+                <p>devon@southerngassolutions.com</p>
               </div>
             </div>
 
