@@ -1,6 +1,6 @@
 import {
   Home, Services, About, OurWork, ServiceAreas, Contact, Quote, Careers,
-  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail,
+  AdminLogin, AdminDashboard, AdminQuote, ApproveQuote, ServiceDetail, NotFound,
 } from './pages/index';
 import { Routes, Route } from 'react-router-dom';
 import './css/global.css';
@@ -25,6 +25,7 @@ function App() {
       <Route path="/admin-dashboard" element={<AdminDashboard />} />
       <Route path="/admin-quote" element={<AdminQuote />} />
       <Route path="/approve-quote/:token" element={<ApproveQuote />} />
+  <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
