@@ -29,8 +29,6 @@ const divisions = [
   },
 ];
 
-const allPositions = divisions.flatMap((d) => d.positions.map((p) => p.role));
-
 const Careers = () => {
   const [form, setForm] = useState({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
   const [resume, setResume] = useState(null);
