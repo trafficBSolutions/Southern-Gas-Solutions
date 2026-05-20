@@ -427,6 +427,22 @@
   padding: 4px;
 }
 
+.btn-outline {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: var(--navy);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.btn-outline:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: #fff7ed;
+}
+
 /* Approve Quote Page */
 .approve-page {
   padding: 100px 20px 40px;
