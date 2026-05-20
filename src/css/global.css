@@ -70,7 +70,7 @@ ul { list-style: none; }
 .btn-outline {
   background: transparent;
   border: 2px solid var(--white);
-  color: var(--white);
+  color: var(--black);
 }
 .btn-outline:hover {
   background: var(--white);
