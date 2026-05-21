@@ -103,6 +103,7 @@ const AdminDashboard = () => {
 
         <div className="admin-actions">
           <a href="/admin-quote" className="btn btn-primary">+ Create Quote</a>
+          <a href="/admin-invoice" className="btn btn-primary">+ Create Invoice</a>
         </div>
 
         {/* Calendar + Job Detail side-by-side */}
